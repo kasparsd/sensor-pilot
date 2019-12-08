@@ -15,3 +15,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   on:
     branch: master
+
+notifications:
+  email: false
