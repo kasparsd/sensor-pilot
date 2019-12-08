@@ -10,7 +10,7 @@ if ('production' !== process.env.NODE_ENV) {
 
 module.exports = {
   output: {
-    path: __dirname + '/docs',
+    path: __dirname + '/dist',
     filename: 'bundle.js',
   },
   module: {
