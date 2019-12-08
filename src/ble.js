@@ -1,23 +1,22 @@
 export default class Ble {
-
-  constructor(bluetoothApi, deviceOptions) {
+  constructor (bluetoothApi, deviceOptions) {
     this.bluetoothApi = bluetoothApi
     this.deviceOptions = deviceOptions
 
     this.server = null
-    this.device = null;
+    this.device = null
   }
 
-  isConnected() {
+  isConnected () {
     return (this.server && this.server.connected)
   }
 
-  getDevice() {
+  getDevice () {
     return this.bluetoothApi.requestDevice(this.deviceOptions)
-      .then(device => device.gatt.connect());
+      .then(device => device.gatt.connect())
   }
 
-  getGATTServer() {
+  getGATTServer () {
     if (this.isConnected()) {
       return Promise.resolve(this.server)
     }
@@ -30,7 +29,7 @@ export default class Ble {
       })
   }
 
-  serviceCharacteristics(serviceUuid, characteristicResolvers) {
+  serviceCharacteristics (serviceUuid, characteristicResolvers) {
     const characteristicUuids = Object.keys(characteristicResolvers)
       .map(name => BluetoothUUID.getCharacteristic(name))
 
@@ -41,12 +40,11 @@ export default class Ble {
         return Promise.all(
           characteristics
             .filter(characteristic => characteristicUuids.includes(characteristic.uuid))
-            .map(characteristic => characteristic.readValue())
+            .map(characteristic => characteristic.readValue()),
         )
       })
       .then(values => Object.values(characteristicResolvers)
-        .map((resolver, index) => resolver(values[index]))
+        .map((resolver, index) => resolver(values[index])),
       )
   }
-
 }

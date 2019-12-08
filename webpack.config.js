@@ -1,11 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
-let serviceWorkerExclude = [];
+const serviceWorkerExclude = []
 
 // Don't cache HTML files to enable hot-reloading.
-if ('production' !== process.env.NODE_ENV) {
-  serviceWorkerExclude.push( /\.html$/ );
+if (process.env.NODE_ENV !== 'production') {
+  serviceWorkerExclude.push(/\.html$/)
 }
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
-      exclude: serviceWorkerExclude
+      exclude: serviceWorkerExclude,
     }),
   ],
-};
+}

@@ -1,4 +1,4 @@
-import "@babel/polyfill";
+import '@babel/polyfill'
 import './styles/main.scss'
 import Ble from './ble'
 
@@ -19,20 +19,20 @@ const aranetServices = {
           humidity: value.getUint8(6),
           battery: value.getUint8(7),
         }
-      }
-    }
+      },
+    },
   },
 
   device: {
     serviceUuid: 'device_information',
     resolvers: {
-      'manufacturer_name_string': (value) => decoder.decode(value),
-      'model_number_string': (value) => decoder.decode(value),
-      'serial_number_string': (value) => decoder.decode(value),
-      'hardware_revision_string': (value) => decoder.decode(value),
-      'software_revision_string': (value) => decoder.decode(value),
-    }
-  }
+      manufacturer_name_string: (value) => decoder.decode(value),
+      model_number_string: (value) => decoder.decode(value),
+      serial_number_string: (value) => decoder.decode(value),
+      hardware_revision_string: (value) => decoder.decode(value),
+      software_revision_string: (value) => decoder.decode(value),
+    },
+  },
 
 }
 
@@ -41,20 +41,20 @@ const ble = new Ble(
   {
     filters: [
       {
-        services: [SENSOR_SERVICE_UUID]
-      }
+        services: [SENSOR_SERVICE_UUID],
+      },
     ],
     optionalServices: [
       'device_information',
       'battery_service',
     ],
-  }
+  },
 )
 
-async function connect() {
+async function connect () {
   const sensorValues = await ble.serviceCharacteristics(
     aranetServices.sensor.serviceUuid,
-    aranetServices.sensor.resolvers
+    aranetServices.sensor.resolvers,
   )
 
   document.querySelectorAll('.aranet-sensor-data .sensor-value').forEach(node => {
@@ -67,14 +67,14 @@ async function connect() {
 if ('bluetooth' in navigator) {
   document.querySelector('#ble-connect')
     .addEventListener('click', () => {
-      connect();
-    });
+      connect()
+    })
 } else {
   // Display browser compatability warning.
 }
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js');
-  });
+    navigator.serviceWorker.register('/service-worker.js')
+  })
 }

@@ -1,3 +1,10 @@
 {
-	"extends": "standard"
+	"ignorePatterns": [
+		"node_modules/",
+		"dist/"
+	],
+	"extends": "standard",
+	"rules": {
+		"comma-dangle": ["error", "always-multiline"]
+	}
 }
