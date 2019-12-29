@@ -94,7 +94,10 @@ export default class Aranet4 extends React.Component {
     return (
       <div>
         <div className="card-header d-flex flex-row justify-content-between">
-          <h3 className="flex-grow-1">Aranet4</h3>
+          <h3 className="flex-grow-1">
+            Aranet4
+            <a href="https://aranet4.com" className="btn btn-link btn-sm align-middle" title="Learn more about Aranet4">Learn More</a>
+          </h3>
           <input type="button" className="btn btn-primary" onClick={this.toggleConnection} value={this.state.connected ? 'Refresh' : 'Connect'} />
         </div>
         <div className="card-body">
