@@ -41,6 +41,8 @@ module.exports = (env, options) => {
       new WorkboxPlugin.GenerateSW({
         clientsClaim: true,
         skipWaiting: true,
+        importWorkboxFrom: 'local',
+        offlineGoogleAnalytics: true,
         exclude: serviceWorkerExclude,
       }),
     ],
