@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, options) => {
   const serviceWorkerExclude = []
@@ -47,6 +48,12 @@ module.exports = (env, options) => {
         offlineGoogleAnalytics: true,
         exclude: serviceWorkerExclude,
       }),
+      new CopyPlugin([
+        {
+          from: 'src/assets/',
+          to: 'assets/',
+        },
+      ]),
     ],
   }
 }
