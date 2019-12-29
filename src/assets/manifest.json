@@ -15,5 +15,7 @@
   ],
   "theme_color": "#343a40",
   "background_color": "#343a40",
-  "display": "standalone"
+  "display": "standalone",
+  "prefer_related_applications": false,
+  "start_url": "./?pwa=1"
 }
