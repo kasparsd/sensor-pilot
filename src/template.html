@@ -28,62 +28,11 @@
 					Web Bluetooth API supported by Chrome on desktop and Android.
 				</p>
 			</div>
-			<div class="card-deck">
-				<div class="card mt-4 mb-4">
-					<div class="card-header d-flex flex-row justify-content-between">
-						<h3>Aranet4</h3>
-						<input type="button" data-device="aranet4" id="ble-connect" class="ble-connect btn btn-primary" value="Connect" />
-					</div>
-					<div class="card-body">
-						<table class="table table-borderless aranet-sensor-data">
-							<tr>
-								<th>CO<sub>2</sub></th>
-								<td><span class="sensor-value" data-value="co2">…</span> ppm</td>
-							</tr>
-							<tr>
-								<th>Temperature</th>
-								<td><span class="sensor-value" data-value="temperature">…</span> C</td>
-							</tr>
-							<tr>
-								<th>Pressure</th>
-								<td><span class="sensor-value" data-value="pressure">…</span> hPa</td>
-							</tr>
-							<tr>
-								<th>Humidity</th>
-								<td><span class="sensor-value" data-value="humidity">…</span> %</td>
-							</tr>
-							<tr>
-								<th>Battery</th>
-								<td><span class="sensor-value" data-value="battery">…</span> %</td>
-							</tr>
-						</table>
-					</div>
+			<div id="root">
+				<div class="alert alert-info" role="alert">
+					<p>Loading application.</p>
+					<p><small>Please make sure to enable Javascript since that's required for the application to work.</small></p>
 				</div>
-				<div class="card mt-4 mb-4">
-						<div class="card-header d-flex flex-row justify-content-between">
-							<h3>Xiaomi Mijia Clock</h3>
-							<input type="button" data-device="mijia-clock" class="ble-connect btn btn-primary" value="Connect" />
-						</div>
-						<div class="card-body">
-							<p class="alert alert-warning" role="alert">
-								Not implement, yet.
-							</p>
-							<table class="ble-sensor-data">
-								<tr>
-									<th>Time</th>
-									<td><span class="ble-sensor-value-time"></span></td>
-								</tr>
-								<tr>
-									<th>Humidity</th>
-									<td><span class="ble-sensor-value-humidity"></span></td>
-								</tr>
-								<tr>
-									<th>Temperature</th>
-									<td><span class="ble-sensor-value-temperature"></span></td>
-								</tr>
-							</table>
-						</div>
-					</div>
 			</div>
 		</div>
 	</main>

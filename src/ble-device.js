@@ -1,6 +1,6 @@
 /* global BluetoothUUID */
 
-export default class Ble {
+export default class BleDevice {
   constructor (bluetoothApi, deviceOptions) {
     this.bluetoothApi = bluetoothApi
     this.deviceOptions = deviceOptions
