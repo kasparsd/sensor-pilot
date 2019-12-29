@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = (env, options) => {
   const serviceWorkerExclude = []
@@ -34,6 +35,7 @@ module.exports = (env, options) => {
       ],
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/template.html',
