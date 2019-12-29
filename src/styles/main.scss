@@ -1,3 +1,8 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
 
+.navbar-brand-icon {
+	height: 2em;
+	vertical-align: middle;
+	margin-left:-0.5em;
+}
