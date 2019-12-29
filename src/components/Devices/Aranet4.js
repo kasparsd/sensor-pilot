@@ -100,8 +100,8 @@ export default class Aranet4 extends React.Component {
         <div className="card-body">
           {this.state.error
             ? <div className="alert alert-danger" role="alert">
-                <code>{this.state.error}</code>
-              </div>
+              <code>{this.state.error}</code>
+            </div>
             : null}
           <table className="table table-borderless aranet-sensor-data">
             <tbody>
