@@ -1,5 +1,6 @@
 {
   "name": "Sensor Pilot",
+  "short_name": "Sensor Pilot",
   "icons": [
     {
       "src": "images/icon-192x192.png",
