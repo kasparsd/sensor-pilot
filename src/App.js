@@ -11,7 +11,7 @@ export default class App extends React.Component {
           this.props.bluetoothApiAvailable
             ? null
             : <div className="alert alert-danger" role="alert">
-                We couldn't detect support for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a> in your web browser.
+                We couldn&rsquo;t detect support for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API">Web Bluetooth API</a> in your web browser.
                 Please try either Google Chrome (desktop or Android), Edge or <a href="https://caniuse.com/web-bluetooth">any of the supported browsers</a>.
             </div>
         }
