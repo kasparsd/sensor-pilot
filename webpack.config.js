@@ -50,8 +50,8 @@ module.exports = (env, options) => {
       }),
       new CopyPlugin([
         {
-          from: 'src/assets/',
-          to: 'assets/',
+          from: 'src/assets',
+          to: 'assets',
         },
       ]),
     ],
