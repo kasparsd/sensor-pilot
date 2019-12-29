@@ -53,6 +53,7 @@ export default class Aranet4 extends React.Component {
     this.state = {
       connected: false,
       lastUpdated: null,
+      error: null,
       sensorValues: {
         co2: null,
         temperature: null,
@@ -65,14 +66,13 @@ export default class Aranet4 extends React.Component {
     this.toggleConnection = this.toggleConnection.bind(this)
   }
 
-  async toggleConnection () {
-    const sensorReadings = await aranet4Device.serviceCharacteristics(
+  toggleConnection () {
+    aranet4Device.serviceCharacteristics(
       aranetServices.sensor.serviceUuid,
       aranetServices.sensor.resolvers,
-    ).catch(() => null)
-
-    if (sensorReadings) {
+    ).then(sensorReadings => {
       this.setState({
+        error: null,
         connected: true,
         sensorValues: {
           co2: String(sensorReadings[0].co2),
@@ -82,11 +82,12 @@ export default class Aranet4 extends React.Component {
           battery: String(sensorReadings[0].battery),
         },
       })
-    } else {
+    }).catch((err) => {
       this.setState({
+        error: err.toString(),
         connected: false,
       })
-    }
+    })
   }
 
   render () {
@@ -97,6 +98,11 @@ export default class Aranet4 extends React.Component {
           <input type="button" className="btn btn-primary" onClick={this.toggleConnection} value={this.state.connected ? 'Refresh' : 'Connect'} />
         </div>
         <div className="card-body">
+          {this.state.error
+            ? <div className="alert alert-danger" role="alert">
+                <code>{this.state.error}</code>
+              </div>
+            : null}
           <table className="table table-borderless aranet-sensor-data">
             <tbody>
               <tr>
