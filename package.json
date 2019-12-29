@@ -1,7 +1,7 @@
 {
   "name": "@kasparsd/sensor-pilot",
   "version": "0.1.0",
-  "description": "",
+  "description": "Monitor and interact with Bluetooth Low Energy (BLE) sensors using the Web Bluetooth API supported by Chrome on desktop and Android",
   "scripts": {
     "lint": "eslint .",
     "start": "webpack-dev-server",
