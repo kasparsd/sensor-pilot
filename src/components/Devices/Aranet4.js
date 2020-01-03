@@ -78,7 +78,7 @@ export default class Aranet4 extends React.Component {
         error: null,
         connected: true,
         sensorValues: {
-          co2: String(sensorReadings[1].value.co2),
+          co2: String(sensorReadings[1].value.co2), // TODO: Don't assume the order of things -- lookup by the UUID instead.
           temperature: String(sensorReadings[1].value.temperature),
           pressure: String(sensorReadings[1].value.pressure),
           humidity: String(sensorReadings[1].value.humidity),
