@@ -10,6 +10,7 @@ const aranetServices = {
   sensor: {
     serviceUuid: SENSOR_SERVICE_UUID,
     resolvers: {
+      // Sensor values.
       'f0cd3001-95da-4f4b-9ac8-aa55d312af0c': (value) => {
         return {
           co2: value.getUint16(0, true),
@@ -19,7 +20,10 @@ const aranetServices = {
           battery: value.getUint8(7),
         }
       },
+      // Seconds since the last sensor update.
       'f0cd2004-95da-4f4b-9ac8-aa55d312af0c': (value) => Math.floor(Date.now() / 1000) - value.getUint16(0, true),
+      // Configured interval in seconds between the updates.
+      'f0cd2002-95da-4f4b-9ac8-aa55d312af0c': (value) => value.getUint16(0, true),
     },
   },
   device: {
@@ -55,6 +59,7 @@ export default class Aranet4 extends React.Component {
 
     this.state = {
       connected: false,
+      updateInterval: null,
       lastUpdated: null,
       error: null,
       sensorValues: {
@@ -78,13 +83,14 @@ export default class Aranet4 extends React.Component {
         error: null,
         connected: true,
         sensorValues: {
-          co2: String(sensorReadings[1].value.co2), // TODO: Don't assume the order of things -- lookup by the UUID instead.
-          temperature: String(sensorReadings[1].value.temperature),
-          pressure: String(sensorReadings[1].value.pressure),
-          humidity: String(sensorReadings[1].value.humidity),
-          battery: String(sensorReadings[1].value.battery),
+          co2: String(sensorReadings[2].value.co2), // TODO: Don't assume the order of things -- lookup by the UUID instead.
+          temperature: String(sensorReadings[2].value.temperature),
+          pressure: String(sensorReadings[2].value.pressure),
+          humidity: String(sensorReadings[2].value.humidity),
+          battery: String(sensorReadings[2].value.battery),
         },
-        lastUpdated: new Date(sensorReadings[0].value * 1000),
+        lastUpdated: new Date(sensorReadings[1].value * 1000),
+        updateInterval: sensorReadings[0].value,
       })
     }).catch((err) => {
       this.setState({
@@ -112,7 +118,7 @@ export default class Aranet4 extends React.Component {
             : null}
           {this.state.lastUpdated
             ? <div className="alert alert-info" role="alert">
-              Last updated: <TimeAgo timestamp={this.state.lastUpdated} />.
+              Last updated <TimeAgo timestamp={this.state.lastUpdated} /> (update interval set to {this.state.updateInterval} seconds).
             </div>
             : null}
           <table className="table table-borderless aranet-sensor-data">
