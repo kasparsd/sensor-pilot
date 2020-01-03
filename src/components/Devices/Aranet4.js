@@ -112,7 +112,7 @@ export default class Aranet4 extends React.Component {
             : null}
           {this.state.lastUpdated
             ? <div className="alert alert-info" role="alert">
-              Last updated: <TimeAgo timestamp={this.state.lastUpdated} />
+              Last updated: <TimeAgo timestamp={this.state.lastUpdated} />.
             </div>
             : null}
           <table className="table table-borderless aranet-sensor-data">
