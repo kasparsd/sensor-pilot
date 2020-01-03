@@ -19,3 +19,8 @@ deploy:
 
 notifications:
   email: false
+
+# Pull requests are built by default.
+branches:
+  only:
+  - master

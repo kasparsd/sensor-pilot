@@ -1,9 +1,11 @@
 import React from 'react'
 import BleDevice from '../../ble-device'
 import SensorValue from '../SensorValue'
+import TimeAgo from '../TimeAgo'
 
 const decoder = new TextDecoder('utf-8') // TODO: Add a polyfill for this.
 const SENSOR_SERVICE_UUID = 'f0cd1400-95da-4f4b-9ac8-aa55d312af0c'
+
 const aranetServices = {
   sensor: {
     serviceUuid: SENSOR_SERVICE_UUID,
@@ -17,6 +19,7 @@ const aranetServices = {
           battery: value.getUint8(7),
         }
       },
+      'f0cd2004-95da-4f4b-9ac8-aa55d312af0c': (value) => Math.floor(Date.now() / 1000) - value.getUint16(0, true),
     },
   },
   device: {
@@ -75,12 +78,13 @@ export default class Aranet4 extends React.Component {
         error: null,
         connected: true,
         sensorValues: {
-          co2: String(sensorReadings[0].co2),
-          temperature: String(sensorReadings[0].temperature),
-          pressure: String(sensorReadings[0].pressure),
-          humidity: String(sensorReadings[0].humidity),
-          battery: String(sensorReadings[0].battery),
+          co2: String(sensorReadings[1].value.co2), // TODO: Don't assume the order of things -- lookup by the UUID instead.
+          temperature: String(sensorReadings[1].value.temperature),
+          pressure: String(sensorReadings[1].value.pressure),
+          humidity: String(sensorReadings[1].value.humidity),
+          battery: String(sensorReadings[1].value.battery),
         },
+        lastUpdated: new Date(sensorReadings[0].value * 1000),
       })
     }).catch((err) => {
       this.setState({
@@ -104,6 +108,11 @@ export default class Aranet4 extends React.Component {
           {this.state.error
             ? <div className="alert alert-danger" role="alert">
               <code>{this.state.error}</code>
+            </div>
+            : null}
+          {this.state.lastUpdated
+            ? <div className="alert alert-info" role="alert">
+              Last updated: <TimeAgo timestamp={this.state.lastUpdated} />.
             </div>
             : null}
           <table className="table table-borderless aranet-sensor-data">
