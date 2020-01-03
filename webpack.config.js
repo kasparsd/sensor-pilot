@@ -16,7 +16,7 @@ module.exports = (env, options) => {
   return {
     output: {
       path: path.join(__dirname, 'public'),
-      filename: 'bundle.js',
+      filename: '[name].[contenthash].js',
     },
     module: {
       rules: [
