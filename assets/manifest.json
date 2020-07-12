@@ -1,0 +1,21 @@
+{
+  "name": "Sensor Pilot",
+  "short_name": "Sensor Pilot",
+  "icons": [
+    {
+      "src": "images/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#343a40",
+  "background_color": "#343a40",
+  "display": "standalone",
+  "prefer_related_applications": false,
+  "start_url": "../?pwa=1"
+}
